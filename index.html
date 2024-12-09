@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Vertederos - Laboratorio de Hidráulica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f7e6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #15803d;
+            margin-bottom: 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .card-header {
+            background-color: #dcfce7;
+            padding: 15px;
+            border-bottom: 1px solid #bbf7d0;
+        }
+        .card-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 0;
+        }
+        .card-description {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        .card-content {
+            padding: 15px;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .image-grid img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #15803d;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #166534;
+        }
+        .results {
+            background-color: #dcfce7;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        .results h3 {
+            margin-top: 0;
+        }
+        .results ul {
+            padding-left: 20px;
+        }
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+            }
+            .sidebar {
+                flex: 1;
+            }
+            .main-content {
+                flex: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Laboratorio de Hidráulica</h1>
+    <div class="container">
+        <div class="sidebar">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Laboratorio de Hidráulica</h2>
+                    <p class="card-description">Imágenes del laboratorio</p>
+                </div>
+                <div class="card-content">
+                    <div class="image-grid">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202024-12-09%20at%2015.50.17%20(3)-PcPuXgbcl1GLq1ukzt1qbP6xvQ8se1.jpeg" alt="Canal hidráulico con agua verde">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202024-12-09%20at%2015.50.17%20(4)-TCcokQnIKMDb5SG9gSBM4MRr6TjMfR.jpeg" alt="Presentación de cálculos hidráulicos">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202024-12-09%20at%2015.50.17-HJs11FWgdqy8WvGbIXvQMEywx5et48.jpeg" alt="Estudiantes tomando medidas">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202024-12-09%20at%2015.50.17%20(1)-fFZx0AQfQ7kw8qVVx2ysHcTbMVnUQi.jpeg" alt="Estudiantes tomando notas">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202024-12-09%20at%2015.50.17%20(2)-N7X8YtVziMghgviDuTyQ2YRvHoxGVT.jpeg" alt="Estudiantes observando canal hidráulico">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202024-12-09%20at%2015.50.16-eUxkQpM5l3mJyLDIgamQhMRKgpYqWu.jpeg" alt="Grupo de estudiantes en laboratorio">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Cálculo de Descargas en Vertederos</h2>
+                    <p class="card-description">Seleccione el tipo de vertedero y complete los datos requeridos</p>
+                </div>
+                <div class="card-content">
+                    <form id="calculatorForm">
+                        <div class="form-group">
+                            <label>
+                                <input type="radio" name="tipoVertedero" value="1" checked> Descarga Libre en Vertedero de Cresta Ancha
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="radio" name="tipoVertedero" value="2"> Descarga Libre en Vertedero Crump
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="radio" name="tipoVertedero" value="3"> Descarga Sumergida en Vertedero de Cresta Ancha
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="radio" name="tipoVertedero" value="4"> Descarga Sumergida en Vertedero Crump
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="h0">Nivel aguas arriba (h₀) en m</label>
+                            <input type="number" id="h0" step="0.0001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mu">Coeficiente de vertedero (μ)</label>
+                            <input type="number" id="mu" step="0.0001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bw">Anchura del vertedero (bw) en m</label>
+                            <input type="number" id="bw" step="0.0001" required>
+                        </div>
+                        <div class="form-group" id="coefReduccionGroup" style="display: none;">
+                            <label for="coefReduccion">Coeficiente de reducción</label>
+                            <input type="number" id="coefReduccion" step="0.0001">
+                        </div>
+                        <button type="button" onclick="calcular()">Calcular</button>
+                    </form>
+                    <div id="results" class="results" style="display: none;">
+                        <h3>Resultados:</h3>
+                        <ul id="resultsList"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function calcular() {
+            const tipoVertedero = document.querySelector('input[name="tipoVertedero"]:checked').value;
+            const h0 = parseFloat(document.getElementById('h0').value);
+            const mu = parseFloat(document.getElementById('mu').value);
+            const bw = parseFloat(document.getElementById('bw').value);
+            const coefReduccion = parseFloat(document.getElementById('coefReduccion').value);
+
+            let h, Q, v, Fr;
+            const resultsList = document.getElementById('resultsList');
+            resultsList.innerHTML = '';
+
+            const addResult = (text) => {
+                const li = document.createElement('li');
+                li.textContent = text;
+                resultsList.appendChild(li);
+            };
+
+            const calcularTipoResalto = (froude) => {
+                if (froude <= 1) return "Flujo crítico (No existe resalto)";
+                if (froude < 1.7) return "Resalto ondular";
+                if (froude < 2.5) return "Resalto débil";
+                if (froude < 4.5) return "Resalto oscilante";
+                if (froude < 9.0) return "Resalto estable";
+                return "Resalto fuerte";
+            };
+
+            switch (tipoVertedero) {
+                case '1': // Descarga Libre - Cresta Ancha
+                case '2': // Descarga Libre - Crump
+                    h = tipoVertedero === '1' ? h0 - 0.375 : h0 - 0.160;
+                    Q = (2/3) * mu * bw * Math.sqrt(2 * 9.81) * (h ** 1.5);
+                    v = Q / (0.6 * h0);
+                    Fr = v / Math.sqrt(9.81 * h0);
+                    const tipoResalto = calcularTipoResalto(Fr);
+                    addResult(`Altura aguas arriba (h): ${h.toFixed(4)} m`);
+                    addResult(`Caudal en el vertedero (Q): ${Q.toFixed(4)} m³/s`);
+                    addResult(`Velocidad del flujo (v): ${v.toFixed(4)} m/s`);
+                    addResult(`Número de Froude (Fr): ${Fr.toFixed(4)}`);
+                    addResult(`Tipo de Resalto: ${tipoResalto}`);
+                    break;
+                case '3': // Descarga Sumergida - Cresta Ancha
+                case '4': // Descarga Sumergida - Crump
+                    h = h0 - 0.160;
+                    Q = (2/3) * mu * coefReduccion * bw * Math.sqrt(2 * 9.81) * (h ** 1.5);
+                    addResult(`Altura aguas arriba (h): ${h.toFixed(4)} m`);
+                    addResult(`Caudal en el vertedero (Q): ${Q.toFixed(4)} m³/s`);
+                    break;
+            }
+
+            document.getElementById('results').style.display = 'block';
+        }
+
+        // Mostrar/ocultar el campo de coeficiente de reducción según el tipo de vertedero
+        document.querySelectorAll('input[name="tipoVertedero"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.getElementById('coefReduccionGroup').style.display = 
+                    (this.value === '3' || this.value === '4') ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
+
